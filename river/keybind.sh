@@ -4,7 +4,7 @@ terminal=alacritty
 browser=firefox
 
 riverctl keyboard-layout -options "grp:caps_toggle" "us,ru"
-riverctl  map -layout 0 normal Super+Control N spawn "riverctl keyboard-layout no"
+riverctl  map -layout 0 normal Super+Alt N spawn "riverctl keyboard-layout no"
 
 riverctl  map -layout 0 normal Super Return spawn $terminal
 riverctl  map -layout 0 normal Super B spawn $browser
@@ -12,19 +12,19 @@ riverctl  map -layout 0 normal Super B spawn $browser
 # Super+C to close the focused view
 riverctl  map -layout 0 normal Super C close
 
-# Super+Shift+E to exit river
+# Super+Alt+Q to exit river
 riverctl  map -layout 0 normal Super+Alt Q exit
+# Super+Alt+R to update configuration
 riverctl  map -layout 0 normal Super+Alt R spawn 'riverctl spawn "~/.config/river/init"'
 
-# Super+J and Super+K to focus the next/previous view in the layout stack
+# Super+{H,J,K,L} to move focus
 riverctl  map -layout 0 normal Super H focus-view left
 riverctl  map -layout 0 normal Super J focus-view down
 riverctl  map -layout 0 normal Super K focus-view up
 riverctl  map -layout 0 normal Super L focus-view right
 
 
-# Super+Shift+J and Super+Shift+K to swap the focused view with the next/previous
-# view in the layout stack
+# Super+{H,J,K,L} to swap windows
 riverctl  map -layout 0 normal Super+Shift H swap left
 riverctl  map -layout 0 normal Super+Shift J swap down
 riverctl  map -layout 0 normal Super+Shift K swap up
@@ -33,18 +33,26 @@ riverctl  map -layout 0 normal Super+Shift L swap right
 riverctl  map -layout 0 normal Super+Control H send-layout-cmd rivertile "main-ratio -0.05"
 riverctl  map -layout 0 normal Super+Control L send-layout-cmd rivertile "main-ratio +0.05"
 #
-# Super+Period and Super+Comma to focus the next/previous output
+# Super+Period and E+Q to focus the next/previous output
 riverctl  map -layout 0 normal Super Q focus-output next
 riverctl  map -layout 0 normal Super E focus-output previous
 
-# Super+Shift+{Period,Comma} to send the focused view to the next/previous output
+#--------------------------ПЕРЕДЕЛАТЬ!-------------------------------------------
+riverctl map -layout normal Alt 1 focus-output HDMI-A-1
+riverctl map -layout normal Alt 2 focus-output DP-1
+riverctl map -layout normal Alt 3 focus-output eDP-1
+
+riverctl map -layout normal Shift+Alt 1 send-to-output HDMI-A-1
+riverctl map -layout normal Shift+Alt 2 send-to-output DP-1
+riverctl map -layout normal ShiftiAlt 3 send-to-output eDP-1
+# ------------------------------------------------------------------------------
+# Super+Shift+{E,Q} to send the focused view to the next/previous output
 riverctl  map -layout 0 normal Super+Shift Q send-to-output next
 riverctl  map -layout 0 normal Super+Shift E send-to-output previous
 
-# Super+Return to bump the focused view to the top of the layout stack
+# Super+Shift+Return to bump the focused view to the top of the layout stack
 riverctl  map -layout 0 normal Super+Shift Return zoom
 
-# Super+H and Super+L to decrease/increase the main ratio of rivertile(1)
 
 # Super+Shift+H and Super+Shift+L to increment/decrement the main count of rivertile(1)
 riverctl  map -layout 0 normal Super Period send-layout-cmd rivertile "main-count +1"
